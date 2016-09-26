@@ -1,0 +1,33 @@
+<div>
+  <form class="form-horizontal">
+
+    <header>
+      <p>Configure your dynamic list of PDF files.</p>
+      <a id="help_tip" href="#">Need help?</a>
+    </header>
+
+    <div class="form-group clearfix">
+      <div class="col-sm-4 control-label">
+        <label for="folder_id">Select a folder with PDF files</label>
+      </div>
+      <div class="col-sm-8">
+        <label for="folder_list" class="select-proxy-display">
+          <span class="icon fa fa-chevron-down"></span>
+          <span class="select-value-proxy">&mdash;Select a folder&mdash;</span>
+
+          <select name="folder-list" id="folder_list" data-label="select" class="hidden-select form-control">
+            <option value="none">&mdash;Select a folder&mdash;</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<template id="template-folder">
+  <option value="\{{id}}" data-folder>\{{name}}</option>
+</template>
+<template id="template-app">
+  <option value="\{{id}}" data-app>\{{name}}</option>
+</template>
