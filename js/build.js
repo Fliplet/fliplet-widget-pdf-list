@@ -1,4 +1,4 @@
-var data = Fliplet.Widget.getData();
+var data = Fliplet.Widget.getData($('[data-file-list-id]').data('file-list-id'));
 
 var $listHolder = $('#list-holder');
 var templates = {
