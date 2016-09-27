@@ -11,11 +11,12 @@ function getFolder() {
   Fliplet.Media.Folders.get({
     appId: Fliplet.Env.get('appId')
   }).then(function (response) {
-    Fliplet.Apps.get( Fliplet.Env.get('appId') ).then(function (apps) {
-      apps[0].name = "Root folder";
+    return Fliplet.Apps.get( Fliplet.Env.get('appId') ).then(function (apps) {
+      apps[0].name = "Root folder (" + apps[0].name + ")";
       apps.forEach(addApp);
+      response.folders.forEach(addFolder);
+      return Promise.resolve();
     });
-    response.folders.forEach(addFolder);
   }).then(initialiseData);
 }
 
@@ -73,11 +74,10 @@ function initialiseData() {
   if (data != undefined ) {
     if (data.appID != '') {
       $('#folder_list [data-app][value="'+data.appID+'"]').attr("selected","selected");
-      $('#folder_list').change();
     } else {
       $('#folder_list [data-folder][value="'+data.appID+'"]').attr("selected","selected");
-      $('#folder_list').change();
     }
+    $('#folder_list').change();
   }
 }
 
