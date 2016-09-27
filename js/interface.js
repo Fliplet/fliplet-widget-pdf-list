@@ -61,7 +61,6 @@ function save() {
     data.folderID = val;
   }
 
-
   Fliplet.Widget.save(data).then(function () {
     Fliplet.Studio.emit('reload-page-preview');
     Fliplet.Widget.complete();
@@ -72,14 +71,13 @@ Fliplet.Widget.onSaveRequest(function () {
   save();
 });
 
-// Not sure what this crap is
-// $folderList.on('change', function() {
-//   var selectedValue = $(this).val();
-//   var selectedText = $(this).find("option:selected").text();
-//   $('.section.show').removeClass('show');
-//   $('#' + selectedValue + 'Section').addClass('show');
-//   $(this).parents('.select-proxy-display').find('.select-value-proxy').html(selectedText);
-// });
+$folderList.on('change', function() {
+  var selectedValue = $(this).val();
+  var selectedText = $(this).find("option:selected").text();
+  $('.section.show').removeClass('show');
+  $('#' + selectedValue + 'Section').addClass('show');
+  $(this).parents('.select-proxy-display').find('.select-value-proxy').html(selectedText);
+});
 
 $('#help_tip').on('click', function() {
   alert("During beta, please use live chat and let us know what you need help with.");
@@ -96,7 +94,7 @@ function initialiseData() {
     $context = $folderList.find('[data-app][value="'+data.appID+'"]');
   } else if (data.organisationID) {
     $context = $folderList.find('[data-organisation][value="'+data.organisationID+'"]');
-  } else {
+  } else if (data.folderID) {
     $context = $folderList.find('[data-folder][value="'+data.folderID+'"]');
   }
 

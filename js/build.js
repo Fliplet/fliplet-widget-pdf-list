@@ -75,7 +75,7 @@ if ( Fliplet.Navigator.isOnline() ) {
 $('.list')
   .on('click', '#list-holder li', function() {
     var mediaId = $(this).attr('data-file-id');
-    var pdfUrl = Fliplet.Env.get('apiUrl') + 'v1/media/files/' + mediaId + 'pdf';
+    var pdfUrl = Fliplet.Env.get('apiUrl') + 'v1/media/files/' + mediaId + '/pdf';
     Fliplet.Navigate.url(pdfUrl);
   });
 
