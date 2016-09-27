@@ -49,16 +49,14 @@ function save() {
   var $el = $folderList.find('option:selected');
   var val = $el.val();
 
-  data.appID = '';
-  data.folderID = '';
-  data.organisationID = '';
+  data = {};
 
   if ($el.data('app')) {
-    data.appID = val;
+    data.appId = val;
   } else if ($el.data('organisation')) {
-    data.organisationID = val;
+    data.organizationId = val;
   } else {
-    data.folderID = val;
+    data.folderId = val;
   }
 
   Fliplet.Widget.save(data).then(function () {
@@ -90,12 +88,12 @@ function initialiseData() {
 
   var $context;
 
-  if (data.appID) {
-    $context = $folderList.find('[data-app][value="'+data.appID+'"]');
-  } else if (data.organisationID) {
-    $context = $folderList.find('[data-organisation][value="'+data.organisationID+'"]');
-  } else if (data.folderID) {
-    $context = $folderList.find('[data-folder][value="'+data.folderID+'"]');
+  if (data.appId) {
+    $context = $folderList.find('[data-app][value="'+data.appId+'"]');
+  } else if (data.organizationId) {
+    $context = $folderList.find('[data-organisation][value="'+data.organizationId+'"]');
+  } else if (data.folderId) {
+    $context = $folderList.find('[data-folder][value="'+data.folderId+'"]');
   }
 
   if ($context) {

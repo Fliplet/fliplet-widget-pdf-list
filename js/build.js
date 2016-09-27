@@ -18,10 +18,7 @@ function getFolderContents() {
   currentFiles = [];
   $listHolder.html('');
 
-  Fliplet.Media.Folders.get({
-      appId: data.appID,
-      folderId: data.folderID
-  }).then(function (response) {
+  Fliplet.Media.Folders.get(data).then(function (response) {
     if (!response.files.length) {
       response.files.push({
         id: 0,
