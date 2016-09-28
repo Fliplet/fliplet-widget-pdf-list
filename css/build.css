@@ -1,3 +1,6 @@
+.list-wrapper {
+    position: relative;
+}
 /* LIST STYLES */
 .list.list-default ul {
     padding: 0;
