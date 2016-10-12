@@ -1,36 +1,133 @@
-<div>
-  <form class="form-horizontal">
-
-    <header>
-      <p>Configure your dynamic list of PDF files.</p>
-      <a id="help_tip" href="#">Need help?</a>
-    </header>
-
-    <div class="form-group clearfix">
-      <div class="col-sm-4 control-label">
-        <label for="folder_id">Select a folder with PDF files</label>
-      </div>
-      <div class="col-sm-8">
-        <label for="folder_list" class="select-proxy-display">
-          <span class="icon fa fa-chevron-down"></span>
-          <span class="select-value-proxy">&mdash;Select a folder&mdash;</span>
-
-          <select name="folder-list" id="folder_list" data-label="select" class="hidden-select form-control">
-            <option value="none">&mdash;Select a folder&mdash;</option>
-          </select>
-        </label>
+<template id="template-file">
+  <div class="col-xs-4 image" data-file-id="\{{id}}">
+    <div class="image-holder" style="background-image: url('\{{thumbnail}}');">
+      <div class="image-info">
+        <p>
+          <strong>\{{name}}</strong>
+        </p>
+        <p>
+          More info coming soon...
+        </p>
       </div>
     </div>
-
-  </form>
-</div>
+    <div class="image-title">
+      <p>
+        <strong>\{{name}}</strong>
+      </p>
+    </div>
+  </div>
+</template>
 
 <template id="template-folder">
-  <option value="\{{id}}" data-folder=true>\{{name}}</option>
+  <div class="col-xs-4 item-holder folder" data-folder-id="\{{id}}" data-parent-id="\{{parentId}}" }>
+    <div class="image-holder">
+      <div class="image-overlay">
+        <i class="fa fa-folder" aria-hidden="true"></i>
+      </div>
+      <div class="image-info">
+        <p>
+          <strong>\{{name}}</strong>
+        </p>
+        <p>
+          Double click to open the folder
+        </p>
+      </div>
+    </div>
+    <div class="image-title">
+      <p>
+        <strong>\{{name}}</strong>
+      </p>
+    </div>
+  </div>
 </template>
+
 <template id="template-app">
-  <option value="\{{id}}" data-app=true>\{{name}} (App)</option>
+  <div class="col-xs-4 item-holder folder" data-app-id="\{{id}}">
+    <div class="image-holder">
+      <div class="image-overlay">
+        <i class="fa fa-folder" aria-hidden="true"></i>
+      </div>
+      <div class="image-info">
+        <p>
+          <strong>\{{name}}</strong>
+        </p>
+        <p>
+          Double click to open the folder
+        </p>
+      </div>
+    </div>
+    <div class="image-title">
+      <p>
+        <strong>\{{name}}</strong>
+      </p>
+    </div>
+  </div>
 </template>
-<template id="template-organisation">
-  <option value="\{{id}}" data-organisation=true>\{{name}} (Organization)</option>
+
+<template id="template-organization">
+  <div class="col-xs-4 item-holder folder" data-organization-id="\{{id}}">
+    <div class="image-holder">
+      <div class="image-overlay">
+        <i class="fa fa-folder" aria-hidden="true"></i>
+      </div>
+      <div class="image-info">
+        <p>
+          <strong>\{{name}}</strong>
+        </p>
+        <p>
+          Double click to open the folder
+        </p>
+      </div>
+    </div>
+    <div class="image-title">
+      <p>
+        <strong>\{{name}}</strong>
+      </p>
+    </div>
+  </div>
 </template>
+
+<template id="template-nofiles">
+  <div class="nofiles-msg">
+    <p>You haven't uploaded any image yet.
+      <br>Click
+      <label class="btn-link" for="image_file">Upload an image</label> to get started.</p>
+  </div>
+</template>
+
+<div id="app">
+  <form id="image-drop-zone" data-upload-file>
+    <input type="file" name="files[]" id="image_file" multiple />
+    <label class="btn btn-primary show" id="choose-image" for="image_file">Upload an image</label>
+
+    <div class="uploading-control">
+      <p><strong>Uploading image...</strong></p>
+    </div>
+    <div class="uploaded-control">
+      <p><strong>Image uploaded!</strong></p>
+    </div>
+  </form>
+  <div class="form-group search-media">
+    <span class="fa fa-search"></span>
+    <input type="text" class="form-control" id="search-media" name="search-media" placeholder="Search is coming soon..." disabled>
+  </div>
+  <div class="titles">
+    <p>My images</p>
+    <p>Select an image from your library below.</p>
+  </div>
+  <div class="gallery-tool clearfix">
+    <!-- BACK BUTTON ONLY SHOWS WHEN THE USER NAVIGATES INSIDE A FOLDER -->
+    <div class="back-btn">
+      Up to <span class="up-to">Folder Name</span>
+    </div>
+    <div class="breadcrumbs-select">
+      <div class="helper"><strong>Root</strong></div>
+    </div>
+  </div>
+  <div class="folder-selection">
+    <span class="">Select an folder below</span>
+  </div>
+  <div class="image-library">
+
+  </div>
+</div>
