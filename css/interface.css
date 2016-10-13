@@ -198,7 +198,7 @@ header a {
     line-height: 44px;
 }
 .gallery-tool .back-btn {
-    padding: 0 14px 0 16px;
+    padding: 0 16px 0 14px;
     position: relative;
     cursor: pointer;
     float: right;
@@ -211,18 +211,17 @@ header a {
     content: "\f148";
     font: normal normal normal 16px FontAwesome;
     position: absolute;
-    left: 0;
+    right: 0;
     width: 10px;
     height: 44px;
     line-height: 44px;
 }
 .breadcrumbs-select {
     width: 60%;
-    text-align: right;
+    display: inline-block;
 }
 .breadcrumbs-select > div.helper {
     line-height: 44px;
-    float: right;
     margin-right: 10px;
 }
 .image-library {
