@@ -152,7 +152,7 @@
     .on('click', '[data-folder-id]', function () {
       var $el = $(this);
       // Removes any selected folder
-      $('.image').not(this).each(function(){
+      $('.folder').not(this).each(function(){
         $(this).removeClass('selected');
       });
 
@@ -160,7 +160,7 @@
         $('.folder-selection span').html('Select a folder below');
         data = {};
       } else {
-        $('.folder-selection span').html('You have selected an image');
+        $('.folder-selection span').html('You have selected a folder');
         data = { folderId: $el.data('folder-id') };
       }
 
@@ -169,26 +169,36 @@
     .on('click', '[data-app-id]', function () {
       var $el = $(this);
       // Removes any selected folder
-      $('.image').not(this).each(function(){
+      $('.folder').not(this).each(function(){
         $(this).removeClass('selected');
       });
 
-      // Selects clicked folder or deselects clicked folder
+      if ($el.hasClass('selected')) {
+        $('.folder-selection span').html('Select a folder below');
+        data = {};
+      } else {
+        $('.folder-selection span').html('You have selected a folder');
+        data = { appId: $el.data('app-id') };
+      }
+
       $el.toggleClass('selected');
-      $('.folder-selection').html('You have selected an app folder');
-      data = { appId: $el.data('app-id') };
     })
     .on('click', '[data-organization-id]', function () {
       var $el = $(this);
       // Removes any selected folder
-      $('.image').not(this).each(function(){
+      $('.folder').not(this).each(function(){
         $(this).removeClass('selected');
       });
 
-      // Selects clicked folder or deselects clicked folder
+      if ($el.hasClass('selected')) {
+        $('.folder-selection span').html('Select a folder below');
+        data = {};
+      } else {
+        $('.folder-selection span').html('You have selected a folder');
+        data = { organizationId: $el.data('organization-id') };
+      }
+
       $el.toggleClass('selected');
-      $('.folder-selection span').html('You have selected an organization folder');
-      data = { organizationId: $el.data('organization-id') };
     });
 
   $('.back-btn').click(function () {
