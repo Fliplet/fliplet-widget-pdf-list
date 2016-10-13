@@ -47,6 +47,9 @@
     // Clean library container
     $imagesContainer.html('');
 
+    // Update paths
+    updatePaths();
+
     var organizationId = Fliplet.Env.get('organizationId');
     return Promise.all([
       Fliplet.Organizations.get(),
