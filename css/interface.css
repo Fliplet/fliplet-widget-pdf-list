@@ -197,16 +197,17 @@ header a {
     padding-bottom: 1em;
     line-height: 44px;
 }
-.back-btn {
+.gallery-tool .back-btn {
     padding: 0 14px 0 16px;
     position: relative;
     cursor: pointer;
+    float: right;
     display: inline-block;
 }
-.back-btn:hover {
+.gallery-tool .back-btn:hover {
     text-decoration: underline;
 }
-.back-btn:before {
+.gallery-tool .back-btn:before {
     content: "\f148";
     font: normal normal normal 16px FontAwesome;
     position: absolute;
@@ -217,7 +218,6 @@ header a {
 }
 .breadcrumbs-select {
     width: 60%;
-    float: right;
     text-align: right;
 }
 .breadcrumbs-select > div.helper {
