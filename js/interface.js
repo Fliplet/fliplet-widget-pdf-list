@@ -77,7 +77,7 @@
   }
 
   function renderFolderContent(values) {
-    $('.folder-selection').html('Select an folder below')
+    $('.folder-selection span').html('Select an folder below')
     $imagesContainer.html('');
 
     if (!values.folders.length) {
@@ -153,10 +153,15 @@
         $(this).removeClass('selected');
       });
 
-      // Selects clicked folder or deselects clicked folder
+      if ($el.hasClass('selected')) {
+        $('.folder-selection span').html('Select an image below');
+        data = {};
+      } else {
+        $('.folder-selection span').html('You have selected an image');
+        data = { folderId: $el.data('folder-id') };
+      }
+
       $el.toggleClass('selected');
-      $('.folder-selection').html('You have selected a folder');
-      data = { folderId: $el.data('folder-id') };
     })
     .on('click', '[data-app-id]', function () {
       var $el = $(this);
@@ -179,7 +184,7 @@
 
       // Selects clicked folder or deselects clicked folder
       $el.toggleClass('selected');
-      $('.folder-selection').html('You have selected an organization folder');
+      $('.folder-selection span').html('You have selected an organization folder');
       data = { organizationId: $el.data('organization-id') };
     });
 
@@ -210,7 +215,7 @@
     $('.up-to').html(upTo[upTo.length - 2].name);
 
     // Current folder
-    $('.helper').html(upTo[upTo.length - 1].name);
+    $('.helper strong').html(upTo[upTo.length - 1].name);
   }
 
   // init
