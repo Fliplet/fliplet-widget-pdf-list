@@ -1,27 +1,27 @@
 <div data-pdf-list-id="{{id}}" class="list-wrapper">
 
-  <template class="template-pdf-list">
-    <li data-file-id="\{{id}}">
-      <div class="list-desc">
-        <p class="list-title">\{{name}}</p>
-        <p>\{{updatedAt}}</p>
-      </div>
-    </li>
-  </template>
+    <template class="template-pdf-list">
+        <li data-file-id="\{{id}}" class="linked">
+            <div class="list-desc">
+                <p class="list-title">\{{name}}</p>
+                <p>\{{updatedAt}}</p>
+            </div>
+        </li>
+    </template>
 
-  <div class="offline-notification">Your device is offline</div>
+    <div class="offline-notification">Your device is offline</div>
 
-  <div class="offline-screen">
-    <p>You are currently offline.</p>
-    <p>Connect to the internet to access the PDF documents.</p>
-  </div>
+    <div class="offline-screen">
+        <p>You are currently offline.</p>
+        <p>Connect to the internet to access the PDF documents.</p>
+    </div>
 
-  <div class="first-load">
-    <p>We are loading the files.</p>
-    <p>This will take a moment.</p>
-  </div>
+    <div class="first-load">
+        <p>We are loading the files.</p>
+        <p>This will take a moment.</p>
+    </div>
 
-  <div class="list list-default" data-view="first-load">
-    <ul class="list-holder"></ul>
-  </div>
+    <div class="list list-default" data-view="first-load">
+        <ul class="list-holder"></ul>
+    </div>
 </div>
