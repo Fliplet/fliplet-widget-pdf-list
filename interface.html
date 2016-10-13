@@ -1,133 +1,97 @@
-<template id="template-file">
-  <div class="col-xs-4 image" data-file-id="\{{id}}">
-    <div class="image-holder" style="background-image: url('\{{thumbnail}}');">
-      <div class="image-info">
-        <p>
-          <strong>\{{name}}</strong>
-        </p>
-        <p>
-          More info coming soon...
-        </p>
-      </div>
-    </div>
-    <div class="image-title">
-      <p>
-        <strong>\{{name}}</strong>
-      </p>
-    </div>
-  </div>
-</template>
-
 <template id="template-folder">
-  <div class="col-xs-4 item-holder folder" data-folder-id="\{{id}}" data-parent-id="\{{parentId}}" }>
-    <div class="image-holder">
-      <div class="image-overlay">
-        <i class="fa fa-folder" aria-hidden="true"></i>
-      </div>
-      <div class="image-info">
-        <p>
-          <strong>\{{name}}</strong>
-        </p>
-        <p>
-          Double click to open the folder
-        </p>
-      </div>
+    <div class="col-xs-4 item-holder folder" data-folder-id="\{{id}}" data-parent-id="\{{parentId}}" }>
+        <div class="image-holder">
+            <div class="image-overlay">
+                <i class="fa fa-folder" aria-hidden="true"></i>
+            </div>
+            <div class="image-info">
+                <p>
+                    <strong>\{{name}}</strong>
+                </p>
+                <p>
+                    Double click to open the folder
+                </p>
+            </div>
+        </div>
+        <div class="image-title">
+            <p>
+                <strong>\{{name}}</strong>
+            </p>
+        </div>
     </div>
-    <div class="image-title">
-      <p>
-        <strong>\{{name}}</strong>
-      </p>
-    </div>
-  </div>
 </template>
 
 <template id="template-app">
-  <div class="col-xs-4 item-holder folder" data-app-id="\{{id}}">
-    <div class="image-holder">
-      <div class="image-overlay">
-        <i class="fa fa-folder" aria-hidden="true"></i>
-      </div>
-      <div class="image-info">
-        <p>
-          <strong>\{{name}}</strong>
-        </p>
-        <p>
-          Double click to open the folder
-        </p>
-      </div>
+    <div class="col-xs-4 item-holder folder" data-app-id="\{{id}}">
+        <div class="image-holder">
+            <div class="image-overlay">
+                <i class="fa fa-folder" aria-hidden="true"></i>
+            </div>
+            <div class="image-info">
+                <p>
+                    <strong>\{{name}}</strong>
+                </p>
+                <p>
+                    Double click to open the folder
+                </p>
+            </div>
+        </div>
+        <div class="image-title">
+            <p>
+                <strong>\{{name}}</strong>
+            </p>
+        </div>
     </div>
-    <div class="image-title">
-      <p>
-        <strong>\{{name}}</strong>
-      </p>
-    </div>
-  </div>
 </template>
 
 <template id="template-organization">
-  <div class="col-xs-4 item-holder folder" data-organization-id="\{{id}}">
-    <div class="image-holder">
-      <div class="image-overlay">
-        <i class="fa fa-folder" aria-hidden="true"></i>
-      </div>
-      <div class="image-info">
-        <p>
-          <strong>\{{name}}</strong>
-        </p>
-        <p>
-          Double click to open the folder
-        </p>
-      </div>
+    <div class="col-xs-4 item-holder folder" data-organization-id="\{{id}}">
+        <div class="image-holder">
+            <div class="image-overlay">
+                <i class="fa fa-folder" aria-hidden="true"></i>
+            </div>
+            <div class="image-info">
+                <p>
+                    <strong>\{{name}}</strong>
+                </p>
+                <p>
+                    Double click to open the folder
+                </p>
+            </div>
+        </div>
+        <div class="image-title">
+            <p>
+                <strong>\{{name}}</strong>
+            </p>
+        </div>
     </div>
-    <div class="image-title">
-      <p>
-        <strong>\{{name}}</strong>
-      </p>
-    </div>
-  </div>
 </template>
 
 <template id="template-nofiles">
-  <div class="nofiles-msg">
-    <p>You haven't uploaded any image yet.
-      <br>Click
-      <label class="btn-link" for="image_file">Upload an image</label> to get started.</p>
-  </div>
+    <div class="nofiles-msg">
+        <p>This folder is empty.</p>
+    </div>
 </template>
 
-<div id="app">
-  <form id="image-drop-zone" data-upload-file>
-    <input type="file" name="files[]" id="image_file" multiple />
-    <label class="btn btn-primary show" id="choose-image" for="image_file">Upload an image</label>
+<div class="widget-holder">
 
-    <div class="uploading-control">
-      <p><strong>Uploading image...</strong></p>
+    <header>
+        <p>Configure your dynamic list of PDF files</p>
+        <a href="#">Need help?</a>
+    </header>
+    <div class="gallery-tool clearfix">
+        <!-- BACK BUTTON ONLY SHOWS WHEN THE USER NAVIGATES INSIDE A FOLDER -->
+        <div class="back-btn">
+            Up to <span class="up-to">Folder Name</span>
+        </div>
+        <div class="breadcrumbs-select">
+            <div class="helper"><strong>Root</strong></div>
+        </div>
     </div>
-    <div class="uploaded-control">
-      <p><strong>Image uploaded!</strong></p>
+    <div class="folder-selection">
+        <span>Select a folder below</span>
     </div>
-  </form>
-  <div class="form-group search-media">
-    <span class="fa fa-search"></span>
-    <input type="text" class="form-control" id="search-media" name="search-media" placeholder="Search is coming soon..." disabled>
-  </div>
-  <div class="titles">
-    <p>My images</p>
-    <p>Select an image from your library below.</p>
-  </div>
-  <div class="gallery-tool clearfix">
-    <!-- BACK BUTTON ONLY SHOWS WHEN THE USER NAVIGATES INSIDE A FOLDER -->
-    <div class="back-btn">
-      Up to <span class="up-to">Folder Name</span>
-    </div>
-    <div class="breadcrumbs-select">
-      <div class="helper"><strong>Root</strong></div>
-    </div>
-  </div>
-  <div class="folder-selection">
-    <span class="">Select an folder below</span>
-  </div>
-  <div class="image-library">
+    <div class="image-library">
 
-  </div>
+    </div>
 </div>
