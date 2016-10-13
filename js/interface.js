@@ -154,7 +154,7 @@
       });
 
       if ($el.hasClass('selected')) {
-        $('.folder-selection span').html('Select an image below');
+        $('.folder-selection span').html('Select a folder below');
         data = {};
       } else {
         $('.folder-selection span').html('You have selected an image');
