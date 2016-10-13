@@ -1,36 +1,104 @@
-<div>
-  <form class="form-horizontal">
+<template id="template-folder">
+    <div class="col-xs-4 item-holder folder" data-folder-id="\{{id}}" data-parent-id="\{{parentId}}" }>
+        <div class="image-holder">
+            <div class="image-overlay">
+                <i class="fa fa-folder" aria-hidden="true"></i>
+            </div>
+            <div class="image-info">
+                <p>
+                    <strong>\{{name}}</strong>
+                </p>
+                <p>
+                    Double click to open the folder
+                </p>
+            </div>
+        </div>
+        <div class="image-title">
+            <p>
+                <strong>\{{name}}</strong>
+            </p>
+        </div>
+    </div>
+</template>
+
+<template id="template-app">
+    <div class="col-xs-4 item-holder folder" data-app-id="\{{id}}">
+        <div class="image-holder">
+            <div class="image-overlay">
+                <i class="fa fa-folder" aria-hidden="true"></i>
+            </div>
+            <div class="image-info">
+                <p>
+                    <strong>\{{name}}</strong>
+                </p>
+                <p>
+                    Double click to open the folder
+                </p>
+            </div>
+        </div>
+        <div class="image-title">
+            <p>
+                <strong>\{{name}}</strong>
+            </p>
+        </div>
+    </div>
+</template>
+
+<template id="template-organization">
+    <div class="col-xs-4 item-holder folder" data-organization-id="\{{id}}">
+        <div class="image-holder">
+            <div class="image-overlay">
+                <i class="fa fa-folder" aria-hidden="true"></i>
+            </div>
+            <div class="image-info">
+                <p>
+                    <strong>\{{name}}</strong>
+                </p>
+                <p>
+                    Double click to open the folder
+                </p>
+            </div>
+        </div>
+        <div class="image-title">
+            <p>
+                <strong>\{{name}}</strong>
+            </p>
+        </div>
+    </div>
+</template>
+
+<template id="template-nofiles">
+    <div class="nofiles-msg">
+        <p>This folder is empty.</p>
+    </div>
+</template>
+
+<div class="widget-holder">
 
     <header>
-      <p>Configure your dynamic list of PDF files.</p>
-      <a id="help_tip" href="#">Need help?</a>
+        <p>Configure your dynamic list of PDF files</p>
+        <a href="#">Need help?</a>
     </header>
 
-    <div class="form-group clearfix">
-      <div class="col-sm-4 control-label">
-        <label for="folder_id">Select a folder with PDF files</label>
-      </div>
-      <div class="col-sm-8">
-        <label for="folder_list" class="select-proxy-display">
-          <span class="icon fa fa-chevron-down"></span>
-          <span class="select-value-proxy">&mdash;Select a folder&mdash;</span>
-
-          <select name="folder-list" id="folder_list" data-label="select" class="hidden-select form-control">
-            <option value="none">&mdash;Select a folder&mdash;</option>
-          </select>
-        </label>
-      </div>
+    <div class="file-manager-controls">
+        <p>To upload PDF files and manage folders go to the File Manager.</p>
+        <p>Click <i>My Apps</i> and then on the left menu click on <i>File Manager</i></p>
+        <!-- <button class="btn btn-default" id="open-file-manager">Open File Manager</button> -->
     </div>
 
-  </form>
-</div>
+    <div class="gallery-tool clearfix">
+      <div class="breadcrumbs-select">
+        <div class="helper"><strong>Root</strong></div>
+      </div>
+      <!-- BACK BUTTON ONLY SHOWS WHEN THE USER NAVIGATES INSIDE A FOLDER -->
+      <div class="back-btn">
+          Up to <span class="up-to">Folder Name</span>
+      </div>
+    </div>
+    <div class="folder-selection">
+        <span>Select a folder below</span>
+    </div>
+    <div class="image-library">
 
-<template id="template-folder">
-  <option value="\{{id}}" data-folder=true>\{{name}}</option>
-</template>
-<template id="template-app">
-  <option value="\{{id}}" data-app=true>\{{name}} (App)</option>
-</template>
-<template id="template-organisation">
-  <option value="\{{id}}" data-organisation=true>\{{name}} (Organization)</option>
-</template>
+    </div>
+</div>
