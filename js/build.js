@@ -75,7 +75,11 @@ $('[data-pdf-list-id]').each(function () {
   $el.find('.list')
     .on('click', '.list-holder li', function() {
       var mediaId = $(this).attr('data-file-id');
-      var pdfUrl = Fliplet.Env.get('apiUrl') + 'v1/media/files/' + mediaId + '/pdf';
+      var pdfUrl = [
+        Fliplet.Env.get('apiUrl'),
+        'v1/media/files/' + mediaId + '/pdf',
+        '?auth_token=' + Fliplet.User.getAuthToken()
+      ].join('');
       Fliplet.Navigate.url(pdfUrl);
     });
 });
