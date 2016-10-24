@@ -5,11 +5,13 @@
     padding: 0 15px;
     border: none;
 }
+
 .btn-default {
     color: #333;
     background-color: #e4e9eb;
     border-bottom: 2px solid #cfd3d5;
 }
+
 .btn-default:active,
 .btn-default:active:focus,
 .btn-default:active:hover,
@@ -20,11 +22,13 @@
     border-color: #cfd3d5;
     outline: none;
 }
+
 .btn-primary {
     color: #FFF;
     background-color: #00abd2;
     border-bottom: 2px solid #0087a6;
 }
+
 .btn-primary:active,
 .btn-primary:active:focus,
 .btn-primary:active:hover,
@@ -35,13 +39,16 @@
     border-color: #0087a6;
     outline: none;
 }
+
 .btn-link,
 a {
     color: #00abd2;
 }
+
 .widget-holder {
     padding: 15px;
 }
+
 header {
     display: flex;
     font-size: 0.8em;
@@ -49,13 +56,16 @@ header {
     margin-bottom: 3rem;
     padding-bottom: 1.5em;
 }
+
 header p {
     flex: 1;
     margin: 0 1.4rem 0 0;
 }
+
 header a {
     text-decoration: none;
 }
+
 #image-drop-zone {
     position: relative;
     width: 100%;
@@ -66,22 +76,27 @@ header a {
     color: #14505e;
     font-weight: normal;
 }
+
 #choose-image,
 .uploaded-control,
 .uploading-control {
     display: none;
 }
+
 #choose-image.show {
     display: inline-block !important;
 }
+
 .uploaded-control p,
 .uploading-control p {
     line-height: 44px;
     margin-bottom: 2px;
 }
+
 .uploading-control p {
     color: #999999;
 }
+
 #image-drop-zone input {
     width: 0.1px;
     height: 0.1px;
@@ -90,11 +105,13 @@ header a {
     position: absolute;
     z-index: -1;
 }
+
 #image-drop-zone p {
     font-size: 1em;
     display: inline-block;
     margin-right: 10px;
 }
+
 .form-control {
     border-radius: 6px;
     border: 1px solid #e4e9eb;
@@ -105,11 +122,13 @@ header a {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
 .form-control:focus {
     border-color: #00abd2;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 171, 210, .6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 171, 210, .6);
 }
+
 .select-proxy-display {
     width: 70%;
     height: 44px;
@@ -126,6 +145,7 @@ header a {
     color: #333;
     float: right;
 }
+
 .select-proxy-display span.select-value-proxy {
     width: calc(100% - 60px);
     position: absolute;
@@ -135,6 +155,7 @@ header a {
     text-overflow: ellipsis;
     text-align: left;
 }
+
 .select-proxy-display .icon {
     position: absolute;
     width: 44px;
@@ -150,6 +171,7 @@ header a {
     border-bottom-right-radius: 6px;
     border-left: 1px solid #e4e9eb;
 }
+
 .hidden-select {
     position: absolute;
     top: 0;
@@ -161,13 +183,16 @@ header a {
     cursor: pointer;
     opacity: 0;
 }
+
 .search-media {
     position: relative;
     margin-top: 30px;
 }
+
 .search-media input {
     text-indent: 30px;
 }
+
 .search-media .fa-search {
     position: absolute;
     top: 10px;
@@ -175,21 +200,25 @@ header a {
     font-size: 22px;
     color: #00abd2;
 }
+
 .titles {
     font-size: 0.8em;
     border-bottom: 1px solid #E3E9EB;
     margin-bottom: 1rem;
     padding-bottom: 1.5em;
 }
+
 .titles p {
     font-weight: bold;
     margin: 0;
 }
+
 .titles p + p {
     font-weight: normal;
     font-size: 0.8em;
     margin: 0.8em 0 0;
 }
+
 .gallery-tool {
     font-size: 1em;
     border-bottom: 1px solid #E3E9EB;
@@ -197,6 +226,7 @@ header a {
     padding-bottom: 1em;
     line-height: 44px;
 }
+
 .gallery-tool .back-btn {
     padding: 0 16px 0 14px;
     position: relative;
@@ -204,9 +234,11 @@ header a {
     float: right;
     display: inline-block;
 }
+
 .gallery-tool .back-btn:hover {
     text-decoration: underline;
 }
+
 .gallery-tool .back-btn:before {
     content: "\f148";
     font: normal normal normal 16px FontAwesome;
@@ -216,31 +248,38 @@ header a {
     height: 44px;
     line-height: 44px;
 }
+
 .breadcrumbs-select {
-    width: 60%;
+    width: 50%;
     display: inline-block;
 }
+
 .breadcrumbs-select > div.helper {
     line-height: 44px;
     margin-right: 10px;
 }
+
 .image-library {
     display: flex;
     justify-content: flex-start;
     flex-flow: wrap;
 }
+
 .image-library .nofiles-msg {
     text-align: center;
     width: 100%;
 }
+
 .image-library .nofiles-msg label {
     cursor: pointer;
 }
+
 .image-library .col-xs-4 {
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 10px;
 }
+
 .image-holder {
     position: relative;
     width: 100%;
@@ -251,6 +290,7 @@ header a {
     border: 1px solid #d9ddde;
     background-color: #FFFFFF;
 }
+
 .image-overlay {
     position: absolute;
     top: 0;
@@ -266,33 +306,41 @@ header a {
     opacity: 0;
     cursor: pointer;
 }
+
 .image-overlay::after,
 .image-overlay::before {
     content: '';
     width: 100%;
     order: 1;
 }
+
 .image-holder:hover .image-overlay {
     opacity: 1;
 }
+
 .image-overlay .btn {
     opacity: 0;
     line-height: 28px;
     font-size: 0.8em;
     border-radius: 4px;
 }
+
 .image-overlay .btn:nth-child(1) {
     order: 1;
 }
+
 .image-overlay .btn:nth-child(2) {
     order: 2;
 }
+
 .image-overlay .line-break {
     width: 100%;
 }
+
 .image-holder:hover .image-overlay .btn {
     opacity: 1;
 }
+
 .image-info {
     position: absolute;
     left: -1px;
@@ -309,59 +357,74 @@ header a {
     z-index: 10;
     word-break: break-word;
 }
+
 .image-info,
 .image-title {
     font-size: 12px;
 }
+
 .image-info p {
     margin-bottom: 5px;
 }
+
 .image-info p + p {
     font-size: 10px;
     margin: 0;
 }
+
 .image-holder:hover > .image-info {
     opacity: 1;
     visibility: visible;
 }
+
 .image-title {
     padding: 9px 11px;
     word-break: break-word;
 }
+
 .image-title p {
     margin: 0;
 }
+
 .folder-selection {
     text-align: left;
     margin-bottom: 2rem;
     padding-right: 10px;
 }
+
 .folder-selection span.active {
     color: #00abd2;
     font-weight: 600;
 }
+
 .image-overlay .fa {
     order: 1;
     font-size: 10vmin;
     color: #ccc;
 }
+
 .folder.selected .image-overlay .fa {
     color: #00abd2;
 }
+
 .folder.selected .image-holder,
 .image.selected .image-holder {
     border-color: #00abd2;
 }
+
 .image-library .folder,
 .image-library .image {
     cursor: pointer;
 }
+
 .image-library .folder .image-info {
     cursor: default;
 }
+
 .image-library .folder .image-overlay {
     opacity: 1;
 }
+
 .file-manager-controls {
     text-align: center;
     padding-bottom: 1.5em;
@@ -371,6 +434,7 @@ header a {
     header {
         font-size: 1.0em;
     }
+
     .image-drop-zone p {
         font-size: 1.12em;
     }
