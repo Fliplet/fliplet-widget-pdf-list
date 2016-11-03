@@ -18,10 +18,14 @@ $('[data-pdf-list-id]').each(function () {
     $el.find('.search-wrapper').attr('data-mode', 'loading');
     $el.find('.search-screen').addClass('loading');
 
+    $el.find('.offline-notification').removeClass('show');
+    $el.find('.offline-screen').removeClass('show');
+    $el.find('.list').removeClass('hidden');
+
     currentFiles = [];
     $listHolder.html('');
 
-    Fliplet.Media.Folders.get(data).then(function (response) {
+    return Fliplet.Media.Folders.get(data).then(function (response) {
       if (!response.files.length || Fliplet.Env.get('development')) {
         response.files.push({
           id: 0,
@@ -34,9 +38,9 @@ $('[data-pdf-list-id]').each(function () {
       $el.find('.search-wrapper').attr('data-mode', 'default');
       $el.find('.search-screen').removeClass('loading');
       $el.find('.list').attr('data-view', 'default');
-      if ( !$el.find('.first-load').hasClass('hidden') ) {
-        $el.find('.first-load').addClass('hidden');
-      }
+      $el.find('.first-load').addClass('hidden');
+
+      return Promise.resolve();
     });
   }
 
@@ -54,22 +58,23 @@ $('[data-pdf-list-id]').each(function () {
     $listHolder.append(templates.list(file));
   }
 
-  // Network states
-  if ( Fliplet.Navigator.isOnline() ) {
-    if ( data != undefined ) {
-      if ( $el.find('.offline-notification').hasClass('show') ) {
-        $el.find('.offline-notification').removeClass('show');
-        $el.find('.offline-screen').removeClass('show');
-        $el.find('.list').removeClass('hidden');
-      }
-      getFolderContents();
-    }
-  } else {
-    $el.find('.offline-notification').addClass('show');
-    $el.find('.offline-screen').addClass('show');
-    $el.find('.list').addClass('hidden');
-    $el.find('.first-load').addClass('hidden');
-  }
+  Fliplet.Navigator.onReady().then(function () {
+    getFolderContents().then(function () {
+      // success
+      $el.find('.first-load').addClass('hidden');
+    }, function () {
+      // fail. perhaps device is offline?
+      $el.find('.offline-notification').addClass('show');
+      $el.find('.offline-screen').addClass('show');
+      $el.find('.list').addClass('hidden');
+      $el.find('.first-load').addClass('hidden');
+
+      // load files when the device goes back online
+      Fliplet.Navigator.onOnline(function () {
+        getFolderContents();
+      })
+    })
+  });
 
   // EVENTS
   $el.find('.list')
