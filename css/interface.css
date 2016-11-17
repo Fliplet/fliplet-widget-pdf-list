@@ -51,7 +51,7 @@ a {
 
 header {
     display: flex;
-    font-size: 0.8em;
+    font-size: 1em;
     border-bottom: 1px solid #E3E9EB;
     margin-bottom: 3rem;
     padding-bottom: 1.5em;
@@ -202,7 +202,7 @@ header a {
 }
 
 .titles {
-    font-size: 0.8em;
+    font-size: 1em;
     border-bottom: 1px solid #E3E9EB;
     margin-bottom: 1rem;
     padding-bottom: 1.5em;
@@ -430,11 +430,6 @@ header a {
     padding-bottom: 1.5em;
 }
 @media only screen and (min-width: 488px) {
-    .titles,
-    header {
-        font-size: 1.0em;
-    }
-
     .image-drop-zone p {
         font-size: 1.12em;
     }
