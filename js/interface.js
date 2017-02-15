@@ -73,7 +73,7 @@
     Fliplet.Media.Folders.get({ type: 'folders', appId: appId })
       .then(renderFolderContent);
   }
-  
+
   function openOrganization(organizationId) {
     Fliplet.Media.Folders.get({ type: 'folders', organizationId: organizationId })
       .then(renderFolderContent);
@@ -93,7 +93,35 @@
     _.sortBy(values.folders, ['name']).forEach(addFolder);
   }
 
+  function enableSearch() {
+    if ($('#file_search_yes').is(':checked')) {
+      data.searchEnabled = true;
+    } else if ($('#file_search_no').is(':checked')) {
+      data.searchEnabled = false;
+    }
+  }
+
+  function loadSearchToggle() {
+    if (typeof data.searchEnabled != "undefined") {
+      if (data.searchEnabled) {
+        $('#file_search_yes').prop("checked", true);
+      } else {
+        $('#file_search_no').prop("checked", true);
+      }
+    } else {
+      $('#file_search_no').prop("checked", true);
+    }
+    enableSearch();
+  }
+
+  $(document).on('change', '.hidden-select', function(){
+    var selectedValue = $(this).val();
+    var selectedText = $(this).find("option:selected").text();
+    $(this).parents('.select-proxy-display').find('.select-value-proxy').text(selectedText);
+  });
+
   $('.image-library')
+    .on('change', 'input[name="file_search"]:radio', enableSearch)
     .on('dblclick', '[data-folder-id]', function () {
       var $el = $(this);
       var id = $el.data('folder-id');
@@ -233,6 +261,7 @@
 
   // init
   openRoot();
+  loadSearchToggle();
 
   Fliplet.Widget.onSaveRequest(function () {
     Fliplet.Widget.save(data).then(function () {

@@ -11,6 +11,7 @@
       "fliplet-core",
       "fliplet-media",
       "fliplet-studio-ui",
+      "font-awesome",
       "lodash"
     ],
     "assets": [
@@ -25,7 +26,8 @@
       "fliplet-core",
       "bootstrap-css",
       "lodash",
-      "fliplet-media"
+      "fliplet-media",
+      "font-awesome"
     ],
     "assets": [
       "vendor/moment.js",
