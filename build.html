@@ -21,7 +21,14 @@
         <p>This will take a moment.</p>
     </div>
 
-    <div class="list list-default" data-view="first-load">
+    <div class="list list-default {{#if searchEnabled}}search-enabled{{/if}}" data-mode="list" data-view="first-load">
+        {{#if searchEnabled}}
+        <form class="list-search">
+          <span class="fa fa-search"></span>
+          <input class="search" type="search" placeholder="Search" />
+          <a href="#" class="btn btn-link search-cancel">Cancel</a>
+        </form>
+        {{/if}}
         <ul class="list-holder"></ul>
     </div>
 </div>

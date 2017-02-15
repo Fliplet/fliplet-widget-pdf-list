@@ -76,6 +76,22 @@ $('[data-pdf-list-id]').each(function () {
     })
   });
 
+  // Click Search bar
+  $(document).on('focus', '.list-search .search', function(){
+    $(this).parents('.list').attr('data-mode', 'search');
+    $(this).css( 'width', $(this).parents('.list-search').width() - $(this).siblings('.search-cancel').outerWidth() + 8 );
+
+    // Do more stuff
+  });
+
+  // Click Cancel button
+  $(document).on('focus', '.list-search .search-cancel', function(){
+    $(this).parents('.list').attr('data-mode', 'list');
+    $(this).siblings('.search').css( 'width', '' );
+
+    // Do more stuff
+  });
+
   // EVENTS
   $el.find('.list')
     .on('click', '.list-holder li', function() {
