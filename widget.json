@@ -22,17 +22,18 @@
   },
   "build": {
     "dependencies": [
-      "handlebars",
       "fliplet-core",
       "bootstrap-css",
       "lodash",
       "fliplet-media",
-      "font-awesome"
+      "font-awesome",
+      "moment",
+      "handlebars"
     ],
     "assets": [
-      "vendor/moment.js",
       "js/build.js",
-      "css/build.css"
+      "css/build.css",
+      "js/build.templates.js"
     ]
   }
 }

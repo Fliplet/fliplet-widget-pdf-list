@@ -1,3 +1,7 @@
+Handlebars.registerHelper('formatDate', function(date) {
+  return moment(date).format('Do MMMM YYYY, h:mm a');
+});
+
 $('[data-pdf-list-id]').each(function () {
   var $el = $(this);
 
@@ -5,13 +9,6 @@ $('[data-pdf-list-id]').each(function () {
   data = _.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
 
   var $listHolder = $el.find('.list-holder');
-  var templates = {
-      list: template('pdf-list')
-  };
-
-  function template(name) {
-      return Handlebars.compile($el.find('.template-' + name).html());
-  }
 
   var currentFiles;
   var pdfs;
@@ -65,7 +62,10 @@ $('[data-pdf-list-id]').each(function () {
     file.updatedAt = moment(file.updatedAt).format("Do MMM YYYY");
 
     currentFiles.push(file);
-    $listHolder.append(templates.list(file));
+    var tpl = Fliplet.Widget.Templates['templates.list'];
+    var html = tpl(file);
+
+    $listHolder.append(html);
   }
 
   Fliplet.Navigator.onReady().then(function () {
