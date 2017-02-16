@@ -40,6 +40,12 @@ $('[data-pdf-list-id]').each(function () {
         return file.url.match(/\.pdf(\?_=\d+)$/)
       });
 
+      pdfs = _.sortBy(pdfs, data.sort.by);
+
+      if (data.sort.order === 'desc') {
+        pdfs = pdfs.reverse();
+      }
+
       pdfs.forEach(addFile);
 
       $el.find('.search-wrapper').attr('data-mode', 'default');
