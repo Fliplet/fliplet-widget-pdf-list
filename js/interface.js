@@ -95,33 +95,40 @@
 
   function enableSearch() {
     if ($('#file_search_yes').is(':checked')) {
-      data.searchEnabled = true;
-    } else if ($('#file_search_no').is(':checked')) {
-      data.searchEnabled = false;
+      return data.search = true;
     }
+
+    data.search = false;
   }
 
-  function loadSearchToggle() {
-    if (typeof data.searchEnabled != "undefined") {
-      if (data.searchEnabled) {
-        $('#file_search_yes').prop("checked", true);
-      } else {
-        $('#file_search_no').prop("checked", true);
-      }
+  function loadSettings() {
+    data = _.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
+    if (data.search) {
+      $('#file_search_yes').prop("checked", true);
     } else {
       $('#file_search_no').prop("checked", true);
     }
-    enableSearch();
+
+    $('#select_sort_by').val(data.sort.by);
+    $('#select_sort_order').val(data.sort.order);
+    $('#select_sort_by, #select_sort_order').change();
   }
 
-  $(document).on('change', '.hidden-select', function(){
-    var selectedValue = $(this).val();
-    var selectedText = $(this).find("option:selected").text();
-    $(this).parents('.select-proxy-display').find('.select-value-proxy').text(selectedText);
+  $('#select_sort_by').on('change', function() {
+    data.sort.by = $(this).val();
   });
 
+  $('#select_sort_order').on('change', function() {
+    data.sort.order = $(this).val();
+  });
+
+  $('#select_sort_by, #select_sort_order').on('change', function(){
+    var selectedText = $(this).find("option:selected").text();
+    $(this).parents('.select-proxy-display').find('.select-value-proxy').html(selectedText);
+  });
+
+  $('input[name="file_search"]:radio').on('change', enableSearch);
   $('.image-library')
-    .on('change', 'input[name="file_search"]:radio', enableSearch)
     .on('dblclick', '[data-folder-id]', function () {
       var $el = $(this);
       var id = $el.data('folder-id');
@@ -261,7 +268,7 @@
 
   // init
   openRoot();
-  loadSearchToggle();
+  loadSettings();
 
   Fliplet.Widget.onSaveRequest(function () {
     Fliplet.Widget.save(data).then(function () {
