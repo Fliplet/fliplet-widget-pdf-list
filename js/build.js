@@ -36,7 +36,7 @@ $('[data-pdf-list-id]').each(function () {
 
       var pdfs = response.files.filter(function (file) {
         // Only PDF files to be shown on this component
-        return file.url.match(/\.pdf$/)
+        return file.url.match(/\.pdf(\?_=\d+)$/)
       });
 
       pdfs.forEach(addFile);
