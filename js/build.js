@@ -14,6 +14,8 @@ $('[data-pdf-list-id]').each(function () {
   }
 
   var currentFiles;
+  var pdfs;
+  var search;
 
   function getFolderContents() {
     $el.find('.search-wrapper').attr('data-mode', 'loading');
@@ -35,7 +37,7 @@ $('[data-pdf-list-id]').each(function () {
         });
       }
 
-      var pdfs = response.files.filter(function (file) {
+      pdfs = response.files.filter(function (file) {
         // Only PDF files to be shown on this component
         return file.url.match(/\.pdf(\?_=\d+)$/)
       });
@@ -88,16 +90,25 @@ $('[data-pdf-list-id]').each(function () {
   $(document).on('focus', '.list-search .search', function(){
     $(this).parents('.list').attr('data-mode', 'search');
     $(this).css( 'width', $(this).parents('.list-search').width() - $(this).siblings('.search-cancel').outerWidth() + 8 );
+  });
 
-    // Do more stuff
+  $('.search').on('keyup change paste', function () {
+    var term = new RegExp(this.value, "i");
+
+    search = pdfs.filter(function (file) {
+      return file.name.match(term);
+    });
+
+    $listHolder.empty();
+    search.forEach(addFile);
   });
 
   // Click Cancel button
   $(document).on('focus', '.list-search .search-cancel', function(){
     $(this).parents('.list').attr('data-mode', 'list');
     $(this).siblings('.search').css( 'width', '' );
-
-    // Do more stuff
+    $('.search').val('');
+    $('.search').change();
   });
 
   // EVENTS
