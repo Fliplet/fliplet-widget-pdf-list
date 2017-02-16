@@ -2,6 +2,7 @@ $('[data-pdf-list-id]').each(function () {
   var $el = $(this);
 
   var data = Fliplet.Widget.getData($el.data('pdf-list-id'));
+  data = _.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
 
   var $listHolder = $el.find('.list-holder');
   var templates = {
