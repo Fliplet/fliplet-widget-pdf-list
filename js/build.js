@@ -33,7 +33,13 @@ $('[data-pdf-list-id]').each(function () {
           url: 'sample.pdf'
         });
       }
-      response.files.forEach(addFile);
+
+      var pdfs = response.files.filter(function (file) {
+        // Only PDF files to be shown on this component
+        return file.url.match(/\.pdf$/)
+      });
+
+      pdfs.forEach(addFile);
 
       $el.find('.search-wrapper').attr('data-mode', 'default');
       $el.find('.search-screen').removeClass('loading');
@@ -46,11 +52,6 @@ $('[data-pdf-list-id]').each(function () {
 
   // Adds file item template
   function addFile(file) {
-    // Only PDF files to be shown on this component
-    if (!file.url.match(/\.pdf$/)) {
-      return;
-    }
-
     // Converts to readable date format
     file.updatedAt = moment(file.updatedAt).format("Do MMM YYYY");
 
