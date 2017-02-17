@@ -107,7 +107,7 @@ $('[data-pdf-list-id]').each(function () {
     });
 
     $listHolder.empty();
-    if (search.length === 0) {
+    if (search.length === 0 && pdfs.length) {
       $el.find('.list').addClass('no-results');
     }
     search.forEach(addFile);
