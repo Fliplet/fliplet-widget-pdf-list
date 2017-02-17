@@ -36,7 +36,7 @@ $('[data-pdf-list-id]').each(function () {
 
       pdfs = response.files.filter(function (file) {
         // Only PDF files to be shown on this component
-        return file.url.match(/\.pdf(\?_=\d+)$/)
+        return file.path.match(/\.pdf$/)
       });
 
       if (data.sort.by === 'createdAt') {
