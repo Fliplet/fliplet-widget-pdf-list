@@ -39,6 +39,13 @@ $('[data-pdf-list-id]').each(function () {
         return file.url.match(/\.pdf(\?_=\d+)$/)
       });
 
+      if (data.sort.by === 'createdAt') {
+        pdfs = pdfs.map(function (file) {
+          file.createdAt = new Date(file.createdAt);
+          return file;
+        });
+      }
+
       pdfs = _.sortBy(pdfs, data.sort.by);
 
       if (data.sort.order === 'desc') {
