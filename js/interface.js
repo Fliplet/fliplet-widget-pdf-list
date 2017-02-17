@@ -247,6 +247,15 @@
   loadSettings();
 
   Fliplet.Widget.onSaveRequest(function () {
+    // Validations
+    if (!data.organizationId && !data.appId && !data.folderId) {
+      return Fliplet.Navigate.popup({
+        popupMessage: '- Select a folder',
+        popupTitle: 'Invalid settings'
+      });
+    }
+
+
     Fliplet.Widget.save(data).then(function () {
       Fliplet.Widget.complete();
     });
