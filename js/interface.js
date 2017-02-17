@@ -138,9 +138,9 @@
 
   $('input[name="file_search"]:radio').on('change', enableSearch);
   $('.image-library')
-    .on('dblclick', '[data-folder-id]', function () {
+    .on('dblclick', '[data-type="folder"]', function () {
       var $el = $(this);
-      var id = $el.data('folder-id');
+      var id = $el.data('id');
       var backItem;
 
       // Store to nav stack
@@ -156,9 +156,9 @@
       // Update paths
       updatePaths();
     })
-    .on('dblclick', '[data-app-id]', function () {
+    .on('dblclick', '[data-type="app"]', function () {
       var $el = $(this);
-      var id = $el.data('app-id');
+      var id = $el.data('id');
       var backItem;
 
       // Store to nav stack
@@ -174,9 +174,9 @@
       // Update paths
       updatePaths();
     })
-    .on('dblclick', '[data-organization-id]', function () {
+    .on('dblclick', '[data-type="organization"]', function () {
       var $el = $(this);
-      var id = $el.data('organization-id');
+      var id = $el.data('id');
       var backItem;
 
       // Store to nav stack
