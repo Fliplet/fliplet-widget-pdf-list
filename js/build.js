@@ -1,18 +1,18 @@
+Handlebars.registerHelper('formatDate', function(date) {
+  return moment(date).format('Do MMMM YYYY, h:mm a');
+});
+
 $('[data-pdf-list-id]').each(function () {
   var $el = $(this);
 
   var data = Fliplet.Widget.getData($el.data('pdf-list-id'));
+  data = _.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
 
   var $listHolder = $el.find('.list-holder');
-  var templates = {
-      list: template('pdf-list')
-  };
-
-  function template(name) {
-      return Handlebars.compile($el.find('.template-' + name).html());
-  }
 
   var currentFiles;
+  var pdfs;
+  var search;
 
   function getFolderContents() {
     $el.find('.search-wrapper').attr('data-mode', 'loading');
@@ -33,12 +33,34 @@ $('[data-pdf-list-id]').each(function () {
           url: 'sample.pdf'
         });
       }
-      response.files.forEach(addFile);
+
+      pdfs = response.files.filter(function (file) {
+        // Only PDF files to be shown on this component
+        return file.path.match(/\.pdf$/)
+      });
+
+      if (data.sort.by === 'createdAt') {
+        pdfs = pdfs.map(function (file) {
+          file.createdAt = new Date(file.createdAt);
+          return file;
+        });
+      }
+
+      pdfs = _.sortBy(pdfs, data.sort.by);
+
+      if (data.sort.order === 'desc') {
+        pdfs = pdfs.reverse();
+      }
+
+      pdfs.forEach(addFile);
 
       $el.find('.search-wrapper').attr('data-mode', 'default');
       $el.find('.search-screen').removeClass('loading');
-      $el.find('.list').attr('data-view', 'default');
       $el.find('.first-load').addClass('hidden');
+      $el.find('.list').attr('data-view', 'default');
+      if (!pdfs.length) {
+        $el.find('.list').addClass('empty-folder');
+      }
 
       return Promise.resolve();
     });
@@ -46,16 +68,11 @@ $('[data-pdf-list-id]').each(function () {
 
   // Adds file item template
   function addFile(file) {
-    // Only PDF files to be shown on this component
-    if (!file.url.match(/\.pdf$/)) {
-      return;
-    }
-
-    // Converts to readable date format
-    file.updatedAt = moment(file.updatedAt).format("Do MMM YYYY");
-
     currentFiles.push(file);
-    $listHolder.append(templates.list(file));
+    var tpl = Fliplet.Widget.Templates['templates.list'];
+    var html = tpl(file);
+
+    $listHolder.append(html);
   }
 
   Fliplet.Navigator.onReady().then(function () {
@@ -74,6 +91,35 @@ $('[data-pdf-list-id]').each(function () {
         getFolderContents();
       })
     })
+  });
+
+  // Click Search bar
+  $(document).on('focus', '.list-search .search', function(){
+    $(this).parents('.list').attr('data-mode', 'search');
+    $(this).css( 'width', $(this).parents('.list-search').width() - $(this).siblings('.search-cancel').outerWidth() + 8 );
+  })
+  .on('keyup change paste', '.list-search .search', function () {
+    var term = new RegExp(this.value, "i");
+    $el.find('.list').removeClass('no-results');
+
+    search = pdfs.filter(function (file) {
+      return file.name.match(term);
+    });
+
+    $listHolder.empty();
+    if (search.length === 0 && pdfs.length) {
+      $el.find('.list').addClass('no-results');
+    }
+    search.forEach(addFile);
+  });
+
+  // Click Cancel button
+  $(document).on('focus', '.list-search .search-cancel', function(){
+    $el.find('.list').removeClass('no-results');
+    $(this).parents('.list').attr('data-mode', 'list');
+    $(this).siblings('.search').css( 'width', '' );
+    $('.search').val('');
+    $('.search').change();
   });
 
   // EVENTS

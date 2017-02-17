@@ -73,7 +73,7 @@
     Fliplet.Media.Folders.get({ type: 'folders', appId: appId })
       .then(renderFolderContent);
   }
-  
+
   function openOrganization(organizationId) {
     Fliplet.Media.Folders.get({ type: 'folders', organizationId: organizationId })
       .then(renderFolderContent);
@@ -93,6 +93,50 @@
     _.sortBy(values.folders, ['name']).forEach(addFolder);
   }
 
+  function enableSearch() {
+    if ($('#file_search_yes').is(':checked')) {
+      return data.search = true;
+    }
+
+    data.search = false;
+  }
+
+  /*
+   * data should store one off orgId/appId/folderId
+   */
+  function cleanSelectedFolder() {
+    data.organizationId = null;
+    data.appId = null;
+    data.folderId = null;
+  }
+
+  function loadSettings() {
+    data = _.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
+    if (data.search) {
+      $('#file_search_yes').prop("checked", true);
+    } else {
+      $('#file_search_no').prop("checked", true);
+    }
+
+    $('#select_sort_by').val(data.sort.by);
+    $('#select_sort_order').val(data.sort.order);
+    $('#select_sort_by, #select_sort_order').change();
+  }
+
+  $('#select_sort_by').on('change', function() {
+    data.sort.by = $(this).val();
+  });
+
+  $('#select_sort_order').on('change', function() {
+    data.sort.order = $(this).val();
+  });
+
+  $('#select_sort_by, #select_sort_order').on('change', function(){
+    var selectedText = $(this).find("option:selected").text();
+    $(this).parents('.select-proxy-display').find('.select-value-proxy').html(selectedText);
+  });
+
+  $('input[name="file_search"]:radio').on('change', enableSearch);
   $('.image-library')
     .on('dblclick', '[data-folder-id]', function () {
       var $el = $(this);
@@ -149,53 +193,20 @@
       updatePaths();
 
     })
-    .on('click', '[data-folder-id]', function () {
+    .on('click', '[data-type]', function () {
       var $el = $(this);
+      var type = $el.data('type');
       // Removes any selected folder
       $('.folder').not(this).each(function(){
         $(this).removeClass('selected');
       });
+      cleanSelectedFolder();
 
       if ($el.hasClass('selected')) {
         $('.folder-selection span').html('Select a folder below');
-        data = {};
       } else {
         $('.folder-selection span').html('You have selected a folder');
-        data = { folderId: $el.data('folder-id') };
-      }
-
-      $el.toggleClass('selected');
-    })
-    .on('click', '[data-app-id]', function () {
-      var $el = $(this);
-      // Removes any selected folder
-      $('.folder').not(this).each(function(){
-        $(this).removeClass('selected');
-      });
-
-      if ($el.hasClass('selected')) {
-        $('.folder-selection span').html('Select a folder below');
-        data = {};
-      } else {
-        $('.folder-selection span').html('You have selected a folder');
-        data = { appId: $el.data('app-id') };
-      }
-
-      $el.toggleClass('selected');
-    })
-    .on('click', '[data-organization-id]', function () {
-      var $el = $(this);
-      // Removes any selected folder
-      $('.folder').not(this).each(function(){
-        $(this).removeClass('selected');
-      });
-
-      if ($el.hasClass('selected')) {
-        $('.folder-selection span').html('Select a folder below');
-        data = {};
-      } else {
-        $('.folder-selection span').html('You have selected a folder');
-        data = { organizationId: $el.data('organization-id') };
+        data[type + 'Id'] = $el.data('id');
       }
 
       $el.toggleClass('selected');
@@ -233,8 +244,18 @@
 
   // init
   openRoot();
+  loadSettings();
 
   Fliplet.Widget.onSaveRequest(function () {
+    // Validations
+    if (!data.organizationId && !data.appId && !data.folderId) {
+      return Fliplet.Navigate.popup({
+        popupMessage: '- Select a folder',
+        popupTitle: 'Invalid settings'
+      });
+    }
+
+
     Fliplet.Widget.save(data).then(function () {
       Fliplet.Widget.complete();
     });

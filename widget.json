@@ -11,6 +11,7 @@
       "fliplet-core",
       "fliplet-media",
       "fliplet-studio-ui",
+      "font-awesome",
       "lodash"
     ],
     "assets": [
@@ -21,16 +22,18 @@
   },
   "build": {
     "dependencies": [
-      "handlebars",
       "fliplet-core",
       "bootstrap-css",
       "lodash",
-      "fliplet-media"
+      "fliplet-media",
+      "font-awesome",
+      "moment",
+      "handlebars"
     ],
     "assets": [
-      "vendor/moment.js",
       "js/build.js",
-      "css/build.css"
+      "css/build.css",
+      "js/build.templates.js"
     ]
   }
 }

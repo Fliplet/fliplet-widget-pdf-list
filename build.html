@@ -1,12 +1,7 @@
 <div data-pdf-list-id="{{id}}" class="list-wrapper">
 
     <template class="template-pdf-list">
-        <li data-file-id="\{{id}}" class="linked">
-            <div class="list-desc">
-                <p class="list-title">\{{name}}</p>
-                <p>\{{updatedAt}}</p>
-            </div>
-        </li>
+
     </template>
 
     <div class="offline-notification">Your device is offline</div>
@@ -21,7 +16,22 @@
         <p>This will take a moment.</p>
     </div>
 
-    <div class="list list-default" data-view="first-load">
-        <ul class="list-holder"></ul>
+    <div class="list list-default {{#if search}}search-enabled{{/if}}" data-mode="list" data-view="first-load">
+        {{#if search}}
+        <form class="list-search">
+          <span class="fa fa-search"></span>
+          <input class="search" type="search" placeholder="Search" />
+          <a href="#" class="btn btn-link search-cancel">Cancel</a>
+        </form>
+        {{/if}}
+        <div class="no-files">
+          <p>No files found</p>
+        </div>
+        <div class="empty-results">
+          <p>No results were found</p>
+        </div>
+        <ul class="list-holder">
+
+        </ul>
     </div>
 </div>
