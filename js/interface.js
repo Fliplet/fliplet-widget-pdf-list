@@ -105,9 +105,9 @@
    * data should store one off orgId/appId/folderId
    */
   function cleanSelectedFolder() {
-    delete data.organizationId;
-    delete data.appId;
-    delete data.folderId;
+    data.organizationId = null;
+    data.appId = null;
+    data.folderId = null;
   }
 
   function loadSettings() {
