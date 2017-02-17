@@ -58,9 +58,6 @@ $('[data-pdf-list-id]').each(function () {
 
   // Adds file item template
   function addFile(file) {
-    // Converts to readable date format
-    file.updatedAt = moment(file.updatedAt).format("Do MMM YYYY");
-
     currentFiles.push(file);
     var tpl = Fliplet.Widget.Templates['templates.list'];
     var html = tpl(file);
