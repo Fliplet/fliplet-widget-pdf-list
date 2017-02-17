@@ -250,12 +250,18 @@
 }
 
 .empty-results,
+.no-files,
 .offline-screen {
     display: none;
     text-align: center;
 }
 
 .list.no-results .empty-results {
+    margin-top: 20px;
+    display: block;
+}
+
+.list.empty-folder .no-files {
     margin-top: 20px;
     display: block;
 }
