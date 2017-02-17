@@ -101,6 +101,15 @@
     data.search = false;
   }
 
+  /*
+   * data should store one off orgId/appId/folderId
+   */
+  function cleanSelectedFolder() {
+    delete data.organizationId;
+    delete data.appId;
+    delete data.folderId;
+  }
+
   function loadSettings() {
     data = _.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
     if (data.search) {
@@ -184,53 +193,20 @@
       updatePaths();
 
     })
-    .on('click', '[data-folder-id]', function () {
+    .on('click', '[data-type]', function () {
       var $el = $(this);
+      var type = $el.data('type');
       // Removes any selected folder
       $('.folder').not(this).each(function(){
         $(this).removeClass('selected');
       });
+      cleanSelectedFolder();
 
       if ($el.hasClass('selected')) {
         $('.folder-selection span').html('Select a folder below');
-        data = {};
       } else {
         $('.folder-selection span').html('You have selected a folder');
-        data = { folderId: $el.data('folder-id') };
-      }
-
-      $el.toggleClass('selected');
-    })
-    .on('click', '[data-app-id]', function () {
-      var $el = $(this);
-      // Removes any selected folder
-      $('.folder').not(this).each(function(){
-        $(this).removeClass('selected');
-      });
-
-      if ($el.hasClass('selected')) {
-        $('.folder-selection span').html('Select a folder below');
-        data = {};
-      } else {
-        $('.folder-selection span').html('You have selected a folder');
-        data = { appId: $el.data('app-id') };
-      }
-
-      $el.toggleClass('selected');
-    })
-    .on('click', '[data-organization-id]', function () {
-      var $el = $(this);
-      // Removes any selected folder
-      $('.folder').not(this).each(function(){
-        $(this).removeClass('selected');
-      });
-
-      if ($el.hasClass('selected')) {
-        $('.folder-selection span').html('Select a folder below');
-        data = {};
-      } else {
-        $('.folder-selection span').html('You have selected a folder');
-        data = { organizationId: $el.data('organization-id') };
+        data[type + 'Id'] = $el.data('id');
       }
 
       $el.toggleClass('selected');

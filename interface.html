@@ -88,7 +88,7 @@
 </div>
 
 <template id="template-folder">
-    <div class="col-xs-4 item-holder folder" data-folder-id="\{{id}}" data-parent-id="\{{parentId}}" }>
+    <div class="col-xs-4 item-holder folder" data-type="folder" data-id="\{{id}}" data-parent-id="\{{parentId}}" }>
         <div class="image-holder">
             <div class="image-overlay">
                 <i class="fa fa-folder" aria-hidden="true"></i>
@@ -111,7 +111,7 @@
 </template>
 
 <template id="template-app">
-    <div class="col-xs-4 item-holder folder" data-app-id="\{{id}}">
+    <div class="col-xs-4 item-holder folder" data-type="app" data-id="\{{id}}">
         <div class="image-holder">
             <div class="image-overlay">
                 <i class="fa fa-folder" aria-hidden="true"></i>
@@ -134,7 +134,7 @@
 </template>
 
 <template id="template-organization">
-    <div class="col-xs-4 item-holder folder" data-organization-id="\{{id}}">
+    <div class="col-xs-4 item-holder folder" data-type="organization" data-id="\{{id}}">
         <div class="image-holder">
             <div class="image-overlay">
                 <i class="fa fa-folder" aria-hidden="true"></i>
