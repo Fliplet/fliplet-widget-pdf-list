@@ -56,8 +56,11 @@ $('[data-pdf-list-id]').each(function () {
 
       $el.find('.search-wrapper').attr('data-mode', 'default');
       $el.find('.search-screen').removeClass('loading');
-      $el.find('.list').attr('data-view', 'default');
       $el.find('.first-load').addClass('hidden');
+      $el.find('.list').attr('data-view', 'default');
+      if (!pdfs.length) {
+        $el.find('.list').addClass('empty-folder');
+      }
 
       return Promise.resolve();
     });
