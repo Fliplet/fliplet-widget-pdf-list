@@ -248,9 +248,15 @@
     pointer-events: all;
 }
 
+.empty-results,
 .offline-screen {
     display: none;
     text-align: center;
+}
+
+.list.no-results .empty-results {
+    margin-top: 20px;
+    display: block;
 }
 
 .first-load {

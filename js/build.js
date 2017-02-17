@@ -94,17 +94,22 @@ $('[data-pdf-list-id]').each(function () {
 
   $('.search').on('keyup change paste', function () {
     var term = new RegExp(this.value, "i");
+    $el.find('.list').removeClass('no-results');
 
     search = pdfs.filter(function (file) {
       return file.name.match(term);
     });
 
     $listHolder.empty();
+    if (search.length === 0) {
+      $el.find('.list').addClass('no-results');
+    }
     search.forEach(addFile);
   });
 
   // Click Cancel button
   $(document).on('focus', '.list-search .search-cancel', function(){
+    $el.find('.list').removeClass('no-results');
     $(this).parents('.list').attr('data-mode', 'list');
     $(this).siblings('.search').css( 'width', '' );
     $('.search').val('');
