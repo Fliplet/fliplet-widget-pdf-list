@@ -8,8 +8,8 @@
 }
 
 .list-search {
-    background: #D2D2D2;
-    padding: 10px;
+    background: transparent;
+    padding: 10px 0;
     height: 44px;
     position: absolute;
     top: 0;
@@ -17,12 +17,13 @@
     width: 100%;
     z-index: 15;
     overflow: hidden;
+    border-bottom: 2px solid #337ab7;
 }
 
 .list-search .fa-search {
     position: absolute;
     top: 15px;
-    left: 18px;
+    left: 10px;
     color: #c5c5c5;
     font-size: 14px;
     z-index: 1;

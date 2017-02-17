@@ -90,9 +90,8 @@ $('[data-pdf-list-id]').each(function () {
   $(document).on('focus', '.list-search .search', function(){
     $(this).parents('.list').attr('data-mode', 'search');
     $(this).css( 'width', $(this).parents('.list-search').width() - $(this).siblings('.search-cancel').outerWidth() + 8 );
-  });
-
-  $('.search').on('keyup change paste', function () {
+  })
+  .on('keyup change paste', '.list-search .search', function () {
     var term = new RegExp(this.value, "i");
     $el.find('.list').removeClass('no-results');
 
