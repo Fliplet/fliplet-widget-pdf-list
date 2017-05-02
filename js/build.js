@@ -99,7 +99,10 @@ $('[data-pdf-list-id]').each(function () {
     $(this).css( 'width', $(this).parents('.list-search').width() - $(this).siblings('.search-cancel').outerWidth() + 8 );
   })
   .on('keyup change paste', '.list-search .search', function () {
-    var term = new RegExp(this.value, "i");
+    // Escape search
+    var search = this.value.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+    var term = new RegExp(search, "i");
     $el.find('.list').removeClass('no-results');
 
     search = pdfs.filter(function (file) {
