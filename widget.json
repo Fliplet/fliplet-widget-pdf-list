@@ -3,7 +3,10 @@
   "package": "com.fliplet.pdf-list",
   "version": "1.0.0",
   "icon": "img/icon.png",
-  "tags": ["type:component", "category:list"],
+  "tags": [
+    "type:component",
+    "category:list"
+  ],
   "provider_only": false,
   "html_tag": "div",
   "interface": {
@@ -15,7 +18,6 @@
       "lodash"
     ],
     "assets": [
-      "vendor/handlebars.js",
       "js/interface.js",
       "css/interface.css"
     ]
