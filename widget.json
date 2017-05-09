@@ -15,7 +15,8 @@
       "fliplet-media",
       "fliplet-studio-ui",
       "font-awesome",
-      "lodash"
+      "lodash",
+      "handlebars"
     ],
     "assets": [
       "js/interface.js",
@@ -37,5 +38,10 @@
       "css/build.css",
       "js/build.templates.js"
     ]
-  }
+  },
+  "references": [
+    "appId:app",
+    "organizationId:organization",
+    "folderId:mediaFolder"
+  ] 
 }
