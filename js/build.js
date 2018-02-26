@@ -134,7 +134,10 @@ $('[data-pdf-list-id]').each(function () {
         'v1/media/files/' + mediaId + '/pdf',
         '?auth_token=' + Fliplet.User.getAuthToken()
       ].join('');
-      Fliplet.Navigate.url(pdfUrl);
-      Fliplet.Analytics.trackEvent('link', 'url', event.target.textContent);
+      Fliplet.Navigate.to({
+        action: 'url',
+        url: pdfUrl,
+        title: event.target.textContent
+      });
     });
 });
