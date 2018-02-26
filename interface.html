@@ -1,5 +1,94 @@
+<div class="widget-holder">
+
+  <header>
+    <p>Configure your dynamic list of PDF files</p>
+    <a href="#">Need help?</a>
+  </header>
+
+  <div class="file-manager-controls">
+    <p>To upload PDF files and manage folders go to the File Manager.</p>
+    <p>Click <i>My Apps</i> and then on the left menu click on <i>File Manager</i></p>
+    <!-- <button class="btn btn-default" id="open-file-manager">Open File Manager</button> -->
+  </div>
+
+  <div class="form-horizontal">
+
+    <div class="form-group clearfix">
+      <div class="col-sm-4 control-label">
+        <label for="select_sort_by">How do you want to sort your files?</label>
+      </div>
+      <div class="col-sm-8">
+        <label for="select_sort_by" class="select-proxy-display">
+            <select name="select_sort_by" id="select_sort_by" data-label="select" class="hidden-select form-control">
+              <option value="name">By file name</option>
+              <option value="createdAt">By uploaded date</option>
+            </select>
+            <span class="icon fa fa-chevron-down"></span>
+            <span class="select-value-proxy">By file name</span>
+          </label>
+      </div>
+    </div>
+
+    <div class="form-group clearfix">
+      <div class="col-sm-4 control-label">
+        <label for="select_sort_order">In what order do you want to sort your files?</label>
+      </div>
+      <div class="col-sm-8">
+        <label for="select_sort_order" class="select-proxy-display">
+            <select name="select_sort_order" id="select_sort_order" data-label="select" class="hidden-select form-control">
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+            <span class="icon fa fa-chevron-down"></span>
+            <span class="select-value-proxy">Ascending</span>
+          </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-4 control-label">
+        <label for="enable-animation">Do you want to enable search?</label>
+        <span class="help-block">This will allow users to search for file names within the app.</span>
+      </div>
+      <div class="col-sm-8">
+        <div class="radio-buttons clearfix">
+          <div class="radio">
+            <input type="radio" id="file_search_yes" name="file_search" value="search-yes">
+            <label for="file_search_yes">
+                Yes
+              </label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="file_search_no" name="file_search" value="search-no">
+            <label for="file_search_no">
+                No
+              </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="gallery-tool clearfix">
+    <div class="breadcrumbs-select">
+      <div class="helper"><strong>Root</strong></div>
+    </div>
+    <!-- BACK BUTTON ONLY SHOWS WHEN THE USER NAVIGATES INSIDE A FOLDER -->
+    <div class="back-btn">
+      Up to <span class="up-to">Folder Name</span>
+    </div>
+  </div>
+  <div class="folder-selection">
+    <span>Select a folder below</span>
+  </div>
+  <div class="image-library">
+
+  </div>
+</div>
+
 <template id="template-folder">
-    <div class="col-xs-4 item-holder folder" data-folder-id="\{{id}}" data-parent-id="\{{parentId}}" }>
+    <div class="col-xs-4 item-holder folder" data-type="folder" data-id="\{{id}}" data-folder-id="\{{id}}" data-parent-id="\{{parentId}}" }>
         <div class="image-holder">
             <div class="image-overlay">
                 <i class="fa fa-folder" aria-hidden="true"></i>
@@ -22,7 +111,7 @@
 </template>
 
 <template id="template-app">
-    <div class="col-xs-4 item-holder folder" data-app-id="\{{id}}">
+    <div class="col-xs-4 item-holder folder" data-type="app" data-id="\{{id}}" data-app-id="\{{id}}">
         <div class="image-holder">
             <div class="image-overlay">
                 <i class="fa fa-folder" aria-hidden="true"></i>
@@ -45,7 +134,7 @@
 </template>
 
 <template id="template-organization">
-    <div class="col-xs-4 item-holder folder" data-organization-id="\{{id}}">
+    <div class="col-xs-4 item-holder folder" data-type="organization" data-id="\{{id}}" data-organization-id="\{{id}}">
         <div class="image-holder">
             <div class="image-overlay">
                 <i class="fa fa-folder" aria-hidden="true"></i>
@@ -72,33 +161,3 @@
         <p>This folder is empty.</p>
     </div>
 </template>
-
-<div class="widget-holder">
-
-    <header>
-        <p>Configure your dynamic list of PDF files</p>
-        <a href="#">Need help?</a>
-    </header>
-
-    <div class="file-manager-controls">
-        <p>To upload PDF files and manage folders go to the File Manager.</p>
-        <p>Click <i>My Apps</i> and then on the left menu click on <i>File Manager</i></p>
-        <!-- <button class="btn btn-default" id="open-file-manager">Open File Manager</button> -->
-    </div>
-
-    <div class="gallery-tool clearfix">
-      <div class="breadcrumbs-select">
-        <div class="helper"><strong>Root</strong></div>
-      </div>
-      <!-- BACK BUTTON ONLY SHOWS WHEN THE USER NAVIGATES INSIDE A FOLDER -->
-      <div class="back-btn">
-          Up to <span class="up-to">Folder Name</span>
-      </div>
-    </div>
-    <div class="folder-selection">
-        <span>Select a folder below</span>
-    </div>
-    <div class="image-library">
-
-    </div>
-</div>

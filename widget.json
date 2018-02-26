@@ -3,7 +3,9 @@
   "package": "com.fliplet.pdf-list",
   "version": "1.0.0",
   "icon": "img/icon.png",
-  "tags": ["type:component", "category:list"],
+  "tags": [
+    "category:list"
+  ],
   "provider_only": false,
   "html_tag": "div",
   "interface": {
@@ -11,26 +13,35 @@
       "fliplet-core",
       "fliplet-media",
       "fliplet-studio-ui",
-      "lodash"
+      "handlebars",
+      "font-awesome",
+      "lodash",
+      "handlebars"
     ],
     "assets": [
-      "vendor/handlebars.js",
       "js/interface.js",
       "css/interface.css"
     ]
   },
   "build": {
     "dependencies": [
-      "handlebars",
       "fliplet-core",
       "bootstrap-css",
       "lodash",
-      "fliplet-media"
+      "fliplet-media",
+      "font-awesome",
+      "moment",
+      "handlebars"
     ],
     "assets": [
-      "vendor/moment.js",
       "js/build.js",
-      "css/build.css"
+      "css/build.css",
+      "js/build.templates.js"
     ]
-  }
+  },
+  "references": [
+    "appId:app",
+    "organizationId:organization",
+    "folderId:mediaFolder"
+  ] 
 }
