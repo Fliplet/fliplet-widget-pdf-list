@@ -2,10 +2,9 @@ Handlebars.registerHelper('formatDate', function(date) {
   return moment(date).format('Do MMMM YYYY, h:mm a');
 });
 
-$('[data-pdf-list-id]').each(function() {
+Fliplet.Widget.instance('pdf-list', function(data) {
   var $el = $(this);
 
-  var data = Fliplet.Widget.getData($el.data('pdf-list-id'));
   data = _.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
 
   var $listHolder = $el.find('.list-holder');
