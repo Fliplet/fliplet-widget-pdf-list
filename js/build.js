@@ -2,7 +2,7 @@ Handlebars.registerHelper('formatDate', function(date) {
   return moment(date).format('Do MMMM YYYY, h:mm a');
 });
 
-$('[data-pdf-list-id]').each(function () {
+$('[data-pdf-list-id]').each(function() {
   var $el = $(this);
 
   var data = Fliplet.Widget.getData($el.data('pdf-list-id'));
@@ -12,7 +12,6 @@ $('[data-pdf-list-id]').each(function () {
 
   var currentFiles;
   var pdfs;
-  var search;
 
   function getFolderContents() {
     $el.find('.search-wrapper').attr('data-mode', 'loading');
@@ -25,7 +24,7 @@ $('[data-pdf-list-id]').each(function () {
     currentFiles = [];
     $listHolder.html('');
 
-    return Fliplet.Media.Folders.get(data).then(function (response) {
+    return Fliplet.Media.Folders.get(data).then(function(response) {
       if (!response.files.length || Fliplet.Env.get('development')) {
         response.files.push({
           id: 0,
@@ -34,13 +33,13 @@ $('[data-pdf-list-id]').each(function () {
         });
       }
 
-      pdfs = response.files.filter(function (file) {
+      pdfs = response.files.filter(function(file) {
         // Only PDF files to be shown on this component
-        return file.path.match(/\.pdf$/)
+        return file.path.match(/\.pdf$/);
       });
 
       if (data.sort.by === 'createdAt') {
-        pdfs = pdfs.map(function (file) {
+        pdfs = pdfs.map(function(file) {
           file.createdAt = new Date(file.createdAt);
           return file;
         });
@@ -75,11 +74,11 @@ $('[data-pdf-list-id]').each(function () {
     $listHolder.append(html);
   }
 
-  Fliplet.Navigator.onReady().then(function () {
-    getFolderContents().then(function () {
+  Fliplet.Navigator.onReady().then(function() {
+    getFolderContents().then(function() {
       // success
       $el.find('.first-load').addClass('hidden');
-    }, function () {
+    }, function() {
       // fail. perhaps device is offline?
       $el.find('.offline-notification').addClass('show');
       $el.find('.offline-screen').addClass('show');
@@ -87,37 +86,39 @@ $('[data-pdf-list-id]').each(function () {
       $el.find('.first-load').addClass('hidden');
 
       // load files when the device goes back online
-      Fliplet.Navigator.onOnline(function () {
+      Fliplet.Navigator.onOnline(function() {
         getFolderContents();
-      })
-    })
+      });
+    });
   });
 
   // Click Search bar
-  $(document).on('focus', '.list-search .search', function(){
+  $(document).on('focus', '.list-search .search', function() {
     $(this).parents('.list').attr('data-mode', 'search');
     $(this).css( 'width', $(this).parents('.list-search').width() - $(this).siblings('.search-cancel').outerWidth() + 8 );
   })
-  .on('keyup change paste', '.list-search .search', function () {
-    // Escape search
-    var search = this.value.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    .on('keyup change paste', '.list-search .search', function() {
+      // Escape search
+      var search = this.value.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 
-    var term = new RegExp(search, "i");
-    $el.find('.list').removeClass('no-results');
+      var term = new RegExp(search, 'i');
+      $el.find('.list').removeClass('no-results');
 
-    search = pdfs.filter(function (file) {
-      return file.name.match(term);
+      search = pdfs.filter(function(file) {
+        return file.name.match(term);
+      });
+
+      $listHolder.empty();
+
+      if (search.length === 0 && pdfs.length) {
+        $el.find('.list').addClass('no-results');
+      }
+
+      search.forEach(addFile);
     });
 
-    $listHolder.empty();
-    if (search.length === 0 && pdfs.length) {
-      $el.find('.list').addClass('no-results');
-    }
-    search.forEach(addFile);
-  });
-
   // Click Cancel button
-  $(document).on('focus', '.list-search .search-cancel', function(){
+  $(document).on('focus', '.list-search .search-cancel', function() {
     $el.find('.list').removeClass('no-results');
     $(this).parents('.list').attr('data-mode', 'list');
     $(this).siblings('.search').css( 'width', '' );
