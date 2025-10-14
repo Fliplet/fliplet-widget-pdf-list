@@ -5,7 +5,7 @@ Handlebars.registerHelper('formatDate', function(date) {
 Fliplet.Widget.instance('pdf-list', function(data) {
   var $el = $(this);
 
-  data = _.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
+  data = Fliplet.Utils.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
 
   var $listHolder = $el.find('.list-holder');
 
@@ -44,7 +44,7 @@ Fliplet.Widget.instance('pdf-list', function(data) {
         });
       }
 
-      pdfs = _.sortBy(pdfs, data.sort.by);
+      pdfs = Fliplet.Utils.sortBy(pdfs, data.sort.by);
 
       if (data.sort.order === 'desc') {
         pdfs = pdfs.reverse();

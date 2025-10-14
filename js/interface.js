@@ -89,7 +89,7 @@
     folders = values.folders;
 
     // Render folders and files
-    _.sortBy(values.folders, ['name']).forEach(addFolder);
+    Fliplet.Utils.sortBy(values.folders, ['name']).forEach(addFolder);
   }
 
   function toggleSearch(event) {
@@ -106,7 +106,7 @@
   }
 
   function loadSettings() {
-    data = _.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
+    data = Fliplet.Utils.assign({ search: false, sort: { by: 'name', order: 'asc' }}, data);
     if (data.search) {
       $('#file_search_yes').prop('checked', true);
     } else {
@@ -139,7 +139,7 @@
       var backItem;
 
       // Store to nav stack
-      backItem = _.find(folders, ['id', id]);
+      backItem = Fliplet.Utils.find(folders, ['id', id]);
       backItem.back = function() {
         openFolder(id);
       };
@@ -157,7 +157,7 @@
       var backItem;
 
       // Store to nav stack
-      backItem = _.find(apps, ['id', id]);
+      backItem = Fliplet.Utils.find(apps, ['id', id]);
       backItem.back = function() {
         openApp(id);
       };
@@ -175,7 +175,7 @@
       var backItem;
 
       // Store to nav stack
-      backItem = _.find(organizations, ['id', id]);
+      backItem = Fliplet.Utils.find(organizations, ['id', id]);
       backItem.back = function() {
         openOrganization(id);
       };
