@@ -12,10 +12,10 @@
     "dependencies": [
       "fliplet-core",
       "fliplet-media",
+      "fliplet-utils",
       "fliplet-studio-ui",
       "handlebars",
       "font-awesome",
-      "lodash",
       "handlebars"
     ],
     "assets": [
@@ -27,7 +27,7 @@
     "dependencies": [
       "fliplet-core",
       "bootstrap-css",
-      "lodash",
+      "fliplet-utils",
       "fliplet-media",
       "font-awesome",
       "moment",
