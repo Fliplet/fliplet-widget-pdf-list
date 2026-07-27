@@ -129,15 +129,26 @@ Fliplet.Widget.instance('pdf-list', function(data) {
   $el.find('.list')
     .on('click', '.list-holder li', function(event) {
       var mediaId = $(this).attr('data-file-id');
-      var pdfUrl = [
-        Fliplet.Env.get('apiUrl'),
-        'v1/media/files/' + mediaId + '/pdf',
-        '?auth_token=' + Fliplet.User.getAuthToken()
-      ].join('');
-      Fliplet.Navigate.to({
-        action: 'url',
-        url: pdfUrl,
-        title: event.target.textContent
+      var title = event.target.textContent;
+
+      // Exchange the real session token for a one-time state token so that
+      // auth_token never appears in the URL opened by the PDF viewer.
+      Fliplet.API.request({
+        url: 'v1/session/authorize/state',
+        method: 'POST'
+      }).then(function(response) {
+        Fliplet.Navigate.to({
+          action: 'url',
+          url: Fliplet.Env.get('apiUrl') + 'v1/media/files/' + mediaId + '/pdf?state=' + response.state,
+          title: title
+        });
+      }).catch(function() {
+        // Fallback for environments where the state token endpoint is not yet deployed.
+        Fliplet.Navigate.to({
+          action: 'url',
+          url: Fliplet.Env.get('apiUrl') + 'v1/media/files/' + mediaId + '/pdf?auth_token=' + Fliplet.User.getAuthToken(),
+          title: title
+        });
       });
     });
 });
